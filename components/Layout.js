@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
           name="description"
           content="A contact list with adding - edit - delete"
         />
-        <link rel="icon" href="/img/profile_pic.png" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <header></header>
