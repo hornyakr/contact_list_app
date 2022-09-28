@@ -184,8 +184,8 @@ const FormModal = ({ close }) => {
                         type="tel"
                         id="phone"
                         className="w-full flex flex-row items-center py-2 px-3 gap-2 bg-grey-80 border border-grey-60 border-solid rounded-lg placeholder:opacity-[.32] focus:border-grey-10 focus:bg-grey-60"
-                        placeholder="+01 234 5678"
-                        pattern="[+]{1}[0-9]{2} [0-9]{3} [0-9]{4}"
+                        placeholder="+36 01 234 5678"
+                        pattern="[+]{1}[0-9]{2} [0-9]{2} [0-9]{3} [0-9]{4}"
                         onChange={(e) => handlePhoneInput(e)}
                         defaultValue={phoneValue}
                         required
@@ -236,13 +236,19 @@ const formatPhoneNumber = (value) => {
   //const phoneNumber = value.replace(/[^\d]/g, "");
   const phoneNumber = value.replaceAll(" ", "");
   const phoneNumberLength = phoneNumber.length;
+
   if (phoneNumberLength < 4) return phoneNumber;
-  if (phoneNumberLength < 7)
+  if (phoneNumberLength < 6)
     return `${phoneNumber.slice(0, 3)} ${phoneNumber.slice(3)}`;
+  if (phoneNumberLength < 9)
+    return `${phoneNumber.slice(0, 3)} ${phoneNumber.slice(
+      3,
+      5
+    )} ${phoneNumber.slice(5)}`;
   return `${phoneNumber.slice(0, 3)} ${phoneNumber.slice(
     3,
-    6
-  )} ${phoneNumber.slice(6, 10)}`;
+    5
+  )} ${phoneNumber.slice(5, 8)} ${phoneNumber.slice(8, 12)}`;
 };
 
 export default FormModal;
