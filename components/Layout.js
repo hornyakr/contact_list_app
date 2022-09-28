@@ -4,8 +4,19 @@ import MiddleHeader from "./header/MiddleHeader";
 import RightHeader from "./header/RightHeader";
 import ModalRoot from "../modules/modals/components/ModalRoot";
 import ModalService from "../modules/modals/services/ModalService";
+import FormModal from "./FormModal";
+import { useModalContext } from "./hooks/modalContext";
+import { useEffect } from "react";
 
 const Layout = ({ children }) => {
+  const [modal, setModal] = useModalContext();
+
+  useEffect(() => {
+    if (modal.isOpen) {
+      ModalService.open(FormModal);
+    }
+  }, [modal]);
+
   return (
     <div className="flex flex-col min-w-full min-h-screen">
       <Head>
